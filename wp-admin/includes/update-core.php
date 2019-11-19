@@ -244,7 +244,7 @@ $_old_files = array(
 	'wp-admin/rtl.css',
 	'wp-admin/rtl.dev.css',
 	'wp-admin/update-links.php',
-	'wp-admin/wp-admin.css',
+	'wp-admin/wp-style.css',
 	'wp-admin/wp-admin.dev.css',
 	'wp-includes/js/codepress',
 	'wp-includes/js/codepress/engines/khtml.js',
