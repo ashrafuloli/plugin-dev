@@ -365,3 +365,21 @@ function twentynineteen_qrcode_countries($countries){
 	return $countries;
 }
 add_filter('qrcode_countries', "twentynineteen_qrcode_countries");
+
+
+// check user info
+function user_contact_info($countries){
+
+	if(!empty(get_the_author_meta('facebook'))){
+		$countries .= esc_url(get_the_author_meta('facebook')) .'<br>' ;
+	}
+	if(!empty(get_the_author_meta('linkedin'))){
+		$countries .= esc_url(get_the_author_meta('linkedin')).'<br>' ;
+	}
+	if(!empty(get_the_author_meta('twitter'))){
+		$countries .= esc_url(get_the_author_meta('twitter')) .'<br>' ;
+	}
+
+	return $countries;
+}
+add_filter('the_content', "user_contact_info");

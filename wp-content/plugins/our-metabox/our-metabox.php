@@ -19,7 +19,12 @@ Class OurMetabox
 		add_action('plugin_loaded', array($this, 'omb_load_textdomain'));
 		add_action('admin_menu', array($this, 'omb_add_metabox'));
 		add_action('save_post', array($this, 'omb_save_metabox'));
+		add_action('save_post', array($this, 'omb_save_image'));
+		add_action('save_post', array($this, 'omb_save_gallery'));
+
 		add_action('admin_enqueue_scripts', array($this, 'omb_admin_assets'));
+		// user contact methods
+		add_filter('user_contactmethods', array($this, 'omb_user_contact_methods'));
 	}
 
 	// security check fun
@@ -78,8 +83,20 @@ Class OurMetabox
 			__('Book Info', 'our-metabox'),
 			array($this, 'omb_book_info'),
 			'book',
-			'normal', // side
-			'default' // high
+		);
+
+		add_meta_box(
+			'omb_image_info',
+			__('Image Info', 'our-metabox'),
+			array($this, 'omb_image_info'),
+			'post'
+		);
+
+		add_meta_box(
+			'omb_gallery_info',
+			__('Gallery Info', 'our-metabox'),
+			array($this, 'omb_gallery_info'),
+			'post'
 		);
 	}
 
@@ -157,11 +174,8 @@ EOD;
 	<option value="" >Select</option>
 EOD;
 		foreach ($colors as $color){
-			$_color = ucwords($color);
 			$selected = ($color == $saved_select_color) ? 'selected' : '';
-			$metabox_html .= <<<EOD
-<option value="{$color}" {$selected}>{$color}</option>
-EOD;
+			$metabox_html .= sprintf('<option value="%s" %s>%s</option>', $color , $selected , ucwords($color));
 		}
 		$metabox_html .= "</select></p>";
 
@@ -233,7 +247,7 @@ EOD;
 			<label for="book_year">Publish Year</label>
 		</div>
 		<div class="input_c">
-			<input type="text" id="book_year">
+			<input type="text" class="omb_dp" id="book_year">
 		</div>
 		<div class="float_c"></div>
 	</div>
@@ -243,8 +257,98 @@ EOD;
 		echo $metabox_html;
 	}
 
+	function omb_image_info($post){
+		$image_id = esc_attr(get_post_meta($post->ID,'omb_image_id', true));
+		$image_url = esc_attr(get_post_meta($post->ID,'omb_image_url', true));
+		wp_nonce_field('omb_image', 'omb_image_nonce');
+
+		$metabox_html = <<<EOD
+<div class="fields">
+	<div class="field_c">
+		<div class="label_c">
+			<label>Image</label>
+		</div>
+		<div class="input_c">
+			<button class="button" id="upload_image">Upload Image</button>
+			<input type="hidden" name="omb_image_id" id="omb_image_id" value="{$image_id}">
+			<input type="hidden" name="omb_image_url" id="omb_image_url" value="{$image_url}">
+			<div id="image_container"></div>
+		</div>
+		<div class="float_c"></div>
+	</div>
+</div>
+</div>
+EOD;
+		echo $metabox_html;
+	}
+
+	function omb_save_image($post_id){
+		if (!$this->is_secured('omb_image_nonce', 'omb_image', $post_id)) {
+			return $post_id;
+		}
+
+		$image_id = isset($_POST['omb_image_id']) ? $_POST['omb_image_id'] : '';
+		$image_url = isset($_POST['omb_image_url']) ? $_POST['omb_image_url'] : '';
+
+		update_post_meta($post_id, 'omb_image_id', $image_id);
+		update_post_meta($post_id, 'omb_image_url', $image_url);
+
+
+	}
+
+	function omb_gallery_info($post){
+		$images_id = esc_attr(get_post_meta($post->ID,'omb_images_id', true));
+		$images_url = esc_attr(get_post_meta($post->ID,'omb_images_url', true));
+		wp_nonce_field('omb_gallery', 'omb_gallery_nonce');
+
+		$label = __('Gallery', 'our-metabox');
+		$button_label = __('Upload Images', 'our-metabox');
+		$metabox_html = <<<EOD
+<div class="fields">
+	<div class="field_c">
+		<div class="label_c">
+			<label>{$label}</label>
+		</div>
+		<div class="input_c">
+			<button class="button" id="upload_images">{$button_label}</button>
+			<input type="hidden" name="omb_images_id" id="omb_images_id" value="{$images_id}">
+			<input type="hidden" name="omb_images_url" id="omb_images_url" value="{$images_url}">
+			<div id="images_container"></div>
+		</div>
+		<div class="float_c"></div>
+	</div>
+</div>
+</div>
+EOD;
+		echo $metabox_html;
+	}
+
+	function omb_save_gallery($post_id){
+		if (!$this->is_secured('omb_gallery_nonce', 'omb_gallery', $post_id)) {
+			return $post_id;
+		}
+
+		$images_id = isset($_POST['omb_images_id']) ? $_POST['omb_images_id'] : '';
+		$images_url = isset($_POST['omb_images_url']) ? $_POST['omb_images_url'] : '';
+
+		update_post_meta($post_id, 'omb_images_id', $images_id);
+		update_post_meta($post_id, 'omb_images_url', $images_url);
+
+
+	}
+
 	function omb_admin_assets(){
 		wp_enqueue_style('omb-admin-style', plugin_dir_url(__FILE__) . "assets/admin/css/style.css", null , time(), 'all');
+		wp_enqueue_style('jquery-ui-css', "//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css", null , time(), 'all');
+		wp_enqueue_script('omb-admin-js', plugin_dir_url(__FILE__) . "assets/admin/js/main.js", array('jquery','jquery-ui-datepicker') , time(), true );
+	}
+
+	function omb_user_contact_methods($methods){
+		$methods['facebook'] = __('Facebook','our-metabox');
+		$methods['linkedin'] = __('Linked In','our-metabox');
+		$methods['twitter'] = __('Twitter','our-metabox');
+
+		return $methods;
 	}
 
 }

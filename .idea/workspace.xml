@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c7f4f69-52e4-4970-94bd-bd27c8037f81" name="Default Changelist" comment="" />
+    <list default="true" id="6c7f4f69-52e4-4970-94bd-bd27c8037f81" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/our-metabox/assets/admin/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/our-metabox/assets/admin/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/our-metabox/our-metabox.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/our-metabox/our-metabox.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/twentynineteen/functions.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="ComposerSettings">
     <execution>
       <executable />
@@ -27,6 +33,9 @@
     <expand />
     <select />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="plugin-dev" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -36,12 +45,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1TGhitzoHPg58Z7m7V51NngxPuG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="C:/cmder/vendor/git-for-windows/bin/git.exe" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -88,6 +98,7 @@
       <workItem from="1573919129930" duration="4555000" />
       <workItem from="1574014824929" duration="50000" />
       <workItem from="1574189012209" duration="4313000" />
+      <workItem from="1574268771188" duration="7852000" />
     </task>
     <servers />
   </component>
