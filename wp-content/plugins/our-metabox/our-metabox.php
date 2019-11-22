@@ -82,7 +82,7 @@ Class OurMetabox
 			'omb_book_info',
 			__('Book Info', 'our-metabox'),
 			array($this, 'omb_book_info'),
-			'book',
+			'book'
 		);
 
 		add_meta_box(
@@ -277,7 +277,6 @@ EOD;
 		<div class="float_c"></div>
 	</div>
 </div>
-</div>
 EOD;
 		echo $metabox_html;
 	}
@@ -317,7 +316,6 @@ EOD;
 		</div>
 		<div class="float_c"></div>
 	</div>
-</div>
 </div>
 EOD;
 		echo $metabox_html;

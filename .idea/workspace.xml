@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c7f4f69-52e4-4970-94bd-bd27c8037f81" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/post-tax-meta-field/assets/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/post-tax-meta-field/post-tax-meta-field.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/tax-meta/tax-meta.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/plugins/our-metabox/assets/admin/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/our-metabox/assets/admin/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/our-metabox/our-metabox.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/our-metabox/our-metabox.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/twentynineteen/functions.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,20 +49,24 @@
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1TGhitzoHPg58Z7m7V51NngxPuG" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/cmder/vendor/git-for-windows/bin/git.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/wp-content/plugins/post-tax-meta-field/assets" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\plugin-dev\wp-content\plugins\post-tax-meta-field\assets" />
+      <recent name="C:\xampp\htdocs\plugin-dev\wp-content\plugins\assets-ninja\assets\public\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\plugin-dev\wp-content\plugins\our-metabox\assets\admin\css" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\plugin-dev\wp-content\plugins\assets-ninja\assets\public\js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -99,6 +104,8 @@
       <workItem from="1574014824929" duration="50000" />
       <workItem from="1574189012209" duration="4313000" />
       <workItem from="1574268771188" duration="7852000" />
+      <workItem from="1574359623535" duration="4671000" />
+      <workItem from="1574400107171" duration="5998000" />
     </task>
     <servers />
   </component>
@@ -117,6 +124,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WordPressConfiguration" enabled="true">
     <wordpressPath>C:\xampp\htdocs\plugin-dev</wordpressPath>
