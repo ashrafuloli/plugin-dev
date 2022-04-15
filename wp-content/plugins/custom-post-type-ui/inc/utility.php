@@ -108,14 +108,14 @@ function cptui_footer( $original = '' ) {
 		__( '%s version %s by %s', 'custom-post-type-ui' ),
 		__( 'Custom Post Type UI', 'custom-post-type-ui' ),
 		CPTUI_VERSION,
-		'<a href="https://webdevstudios.com" target="_blank">WebDevStudios</a>'
+		'<a href="https://webdevstudios.com" target="_blank" rel="noopener">WebDevStudios</a>'
 	) . ' - ' .
 	sprintf(
-		'<a href="http://wordpress.org/support/plugin/custom-post-type-ui" target="_blank">%s</a>',
+		'<a href="http://wordpress.org/support/plugin/custom-post-type-ui" target="_blank" rel="noopener">%s</a>',
 		__( 'Support forums', 'custom-post-type-ui' )
 	) . ' - ' .
 	sprintf(
-		'<a href="https://wordpress.org/plugins/custom-post-type-ui/reviews/" target="_blank">%s</a>',
+		'<a href="https://wordpress.org/plugins/custom-post-type-ui/reviews/" target="_blank" rel="noopener">%s</a>',
 		sprintf(
 			// translators: Placeholder will hold `<abbr>` tag for CPTUI.
 			__( 'Review %s', 'custom-post-type-ui' ),
@@ -129,7 +129,7 @@ function cptui_footer( $original = '' ) {
 	__( 'Follow on Twitter:', 'custom-post-type-ui' ) .
 	sprintf(
 		' %s',
-		'<a href="https://twitter.com/webdevstudios" target="_blank">WebDevStudios</a>'
+		'<a href="https://twitter.com/webdevstudios" target="_blank" rel="noopener">WebDevStudios</a>'
 	);
 }
 add_filter( 'admin_footer_text', 'cptui_footer' );
@@ -369,37 +369,48 @@ add_action( 'cptui_below_taxonomy_tab_menu', 'cptui_products_sidebar' );
  */
 function cptui_newsletter_form() {
 	?>
-<!-- Begin MailChimp Signup Form -->
-<div id="mc_embed_signup">
-	<form action="//webdevstudios.us1.list-manage.com/subscribe/post?u=67169b098c99de702c897d63e&amp;id=9cb1c7472e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-		<div id="mc_embed_signup_scroll">
-			<p><strong><?php esc_html_e( 'Get email updates from pluginize.com about Custom Post Type UI', 'custom-post-type-ui' ); ?></strong></p>
-			<div class="mc-field-group">
-				<label for="mce-EMAIL"><?php esc_html_e( 'Email Address', 'custom-post-type-ui' ); ?></label>
-				<input tabindex="-1" type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-			</div>
-			<div id="mce-responses" class="clear">
-				<div class="response" id="mce-error-response" style="display:none"></div>
-				<div class="response" id="mce-success-response" style="display:none"></div>
-			</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-			<div style="position: absolute; left: -5000px;" aria-hidden="true">
-				<input type="text" name="b_67169b098c99de702c897d63e_9cb1c7472e" tabindex="-1" value=""></div>
-			<div class="clear">
-				<input type="submit" value="<?php esc_attr_e( 'Subscribe', 'custom-post-type-ui' ); ?>" name="subscribe" id="mc-embedded-subscribe" class="button" tabindex="-1">
-			</div>
-		</div>
-	</form>
+
+<div class="email-octopus-form-wrapper">
+    <p><strong>Get email updates from pluginize.com about Custom Post Type UI</strong></p>
+    <p class="email-octopus-success-message"></p>
+    <p class="email-octopus-error-message"></p>
+
+    <form method="post"
+      action="https://emailoctopus.com/lists/2039e001-4775-11ea-be00-06b4694bee2a/members/embedded/1.3/add"
+      class="email-octopus-form"
+      data-sitekey="6LdYsmsUAAAAAPXVTt-ovRsPIJ_IVhvYBBhGvRV6">
+        <div class="email-octopus-form-row">
+            <label for="field_0">Email address</label>
+            <input id="field_0" name="field_0" type="email" placeholder="email@domain.com" style="max-width:100%;">
+        </div>
+
+        <div class="email-octopus-form-row-hp" aria-hidden="true">
+            <!-- Do not remove this field, otherwise you risk bot sign-ups -->
+            <input type="text" name="hp2039e001-4775-11ea-be00-06b4694bee2a"
+               tabindex="-1"
+               autocomplete="nope">
+        </div>
+
+        <div class="email-octopus-form-row-subscribe">
+            <input type="hidden"
+               name="successRedirectUrl"
+               value="">
+            <button type="submit" class="button button-secondary">Subscribe</button>
+        </div>
+    </form>
 </div>
-<!--End mc_embed_signup-->
+
 <?php
 }
 
 /**
- * Add our mailchimp scripts and stylesheet.
+ * Add our Email Octopus scripts and stylesheet.
  *
- * @since unsure
+ * @author Scott Anderson <scott.anderson@webdevstudios.com>
+ * @since  NEXT
  */
-function cptui_mailchimp_scripts_styles() {
+function enqueue_email_octopus_assets() {
+
 	$current_screen = get_current_screen();
 
 	if ( ! is_object( $current_screen ) ) {
@@ -420,12 +431,12 @@ function cptui_mailchimp_scripts_styles() {
 		return;
 	}
 
-	wp_enqueue_style( 'cptui-mailchimp', '//cdn-images.mailchimp.com/embedcode/classic-10_7.css' );
-	wp_enqueue_script( 'cptui-mailchimp-js', '//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js', [], '', true );
-	wp_add_inline_script( 'cptui-mailchimp-js', '(function ($) {window.fnames = new Array();window.ftypes = new Array();fnames[0] = "EMAIL";ftypes[0] = "email";}(jQuery));var $mcj = jQuery.noConflict(true);' );
+	wp_enqueue_style( 'cptui-emailoctopus', 'https://emailoctopus.com/bundles/emailoctopuslist/css/formEmbed.css' );
+
+	wp_enqueue_script( 'cptui-emailoctopus-js', 'https://emailoctopus.com/bundles/emailoctopuslist/js/1.4/formEmbed.js', [ 'jquery' ], '', true );
 
 }
-add_action( 'admin_enqueue_scripts', 'cptui_mailchimp_scripts_styles' );
+add_action( 'admin_enqueue_scripts', 'enqueue_email_octopus_assets' );
 
 /**
  * Fetch all set ads to be displayed.
@@ -560,11 +571,17 @@ function cptui_admin_notices_helper( $message = '', $success = true ) {
  */
 function cptui_get_object_from_post_global() {
 	if ( isset( $_POST['cpt_custom_post_type']['name'] ) ) {
-		return sanitize_text_field( $_POST['cpt_custom_post_type']['name'] );
+		$type_item = filter_input( INPUT_POST, 'cpt_custom_post_type', FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY );
+		if ( $type_item ) {
+			return sanitize_text_field( $type_item['name'] );
+		}
 	}
 
 	if ( isset( $_POST['cpt_custom_tax']['name'] ) ) {
-		return sanitize_text_field( $_POST['cpt_custom_tax']['name'] );
+		$tax_item = filter_input( INPUT_POST, 'cpt_custom_tax', FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY );
+		if ( $tax_item ) {
+			return sanitize_text_field( $tax_item['name'] );
+		}
 	}
 
 	return esc_html__( 'Object', 'custom-post-type-ui' );
@@ -680,6 +697,13 @@ function cptui_import_fail_admin_notice() {
 	);
 }
 
+function cptui_nonce_fail_admin_notice() {
+	echo cptui_admin_notices_helper(
+		esc_html__( 'Nonce failed verification', 'custom-post-type-ui' ),
+		false
+	);
+}
+
 /**
  * Returns error message for if trying to register existing post type.
  *
@@ -727,9 +751,21 @@ function cptui_empty_cpt_on_taxonomy() {
  * @return string
  */
 function cptui_slug_matches_page() {
+	$slug = cptui_get_object_from_post_global();
+	$matched_slug = get_page_by_path(
+		cptui_get_object_from_post_global()
+	);
+	if ( $matched_slug instanceof WP_Post ) {
+		$slug = sprintf(
+			'<a href="%s">%s</a>',
+			get_edit_post_link( $matched_slug->ID ),
+			cptui_get_object_from_post_global()
+		);
+	}
+
 	return sprintf(
 		esc_html__( 'Please choose a different post type name. %s matches an existing page slug, which can cause conflicts.', 'custom-post-type-ui' ),
-		cptui_get_object_from_post_global()
+		$slug
 	);
 }
 
@@ -837,12 +873,12 @@ function cptui_set_not_new_install() {
  * @return string
  */
 function cptui_get_cptui_post_type_object( $post_type = '' ) {
-	$post_types = get_option( 'cptui_post_types' );
+	$post_types = get_option( 'cptui_post_types', [] );
 
-	if ( array_key_exists( $post_type, $post_types ) ) {
+	if ( is_array( $post_types ) && array_key_exists( $post_type, $post_types ) ) {
 		return $post_types[ $post_type ];
 	}
-	return '';
+	return [];
 }
 
 /**
@@ -854,12 +890,12 @@ function cptui_get_cptui_post_type_object( $post_type = '' ) {
  * @return string
  */
 function cptui_get_cptui_taxonomy_object( $taxonomy = '' ) {
-	$taxonomies = get_option( 'cptui_taxonomies' );
+	$taxonomies = get_option( 'cptui_taxonomies', [] );
 
-	if ( array_key_exists( $taxonomy, $taxonomies ) ) {
+	if ( is_array( $taxonomies ) && array_key_exists( $taxonomy, $taxonomies ) ) {
 		return $taxonomies[ $taxonomy ];
 	}
-	return '';
+	return [];
 }
 
 /**
@@ -897,7 +933,15 @@ function cptui_post_type_supports( $post_type, $feature ) {
  * @param array $post_types Array of CPTUI post types.
  */
 function cptui_published_post_format_fix( $post_types ) {
+	if ( empty( $post_types ) || ! is_array( $post_types ) ) {
+		return;
+	}
+
 	foreach ( $post_types as $type ) {
+		if ( ! is_array( $type['supports'] ) ) {
+			continue;
+		}
+
 		if ( in_array( 'post-formats', $type['supports'], true ) ) {
 			add_post_type_support( $type['name'], 'post-formats' );
 			register_taxonomy_for_object_type( 'post_format', $type['name'] );
